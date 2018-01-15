@@ -58,7 +58,8 @@
   <div class="main">
     <div class="sidebar-menu-con"  :style="{width: shrink?'60px':'200px'}">
       <shrinkableMenu
-        :shrink="shrink">
+        :shrink="shrink"
+        :menuList="menuList">
         <div slot="top" class="logo-con">
           <img v-show="!shrink"  src="../image/logo.jpg"/>
           <img v-show="shrink" src="../image/logo-min.jpg"/>
@@ -101,6 +102,11 @@
     data () {
       return {
         shrink: false
+      }
+    },
+    computed: {
+      menuList () {
+        return this.$store.state.app.menuList;
       }
     },
     methods: {

@@ -1,79 +1,46 @@
 <style lang="less">
-  .drop-menu{
-    text-align: center;
-    .drop-list{
-      .drop-icon{
-        box-sizing: border-box;
-        width: 70px;
-        margin-left: -5px;
-      }
+  .drop-list{
+    .drop-icon{
+      box-sizing: border-box;
+      width: 70px;
+      margin-left: -5px;
     }
   }
 </style>
 <template>
-  <div class="drop-menu">
-    <div class="">
-      <Dropdown class="drop-list"  placement="right-start">
+  <div>
+    <template v-for="(item, index) in menuList">
+      <div style="text-align: center;" :key="index">
+        <Dropdown transfer v-if="item.children.length !== 1" class="drop-list"  placement="right-start">
           <Button type="text" class="drop-icon">
-            <Icon type="lock-combination" size="20" color="#ffffff"></Icon>
+            <Icon :type="item.icon" size="20" color="#ffffff"></Icon>
           </Button>
           <DropdownMenu slot="list" style="width: 200px;">
-              <DropdownItem>驴打滚</DropdownItem>
-              <DropdownItem>炸酱面</DropdownItem>
-              <DropdownItem disabled>豆汁儿</DropdownItem>
-              <DropdownItem>冰糖葫芦</DropdownItem>
-              <DropdownItem divided>北京烤鸭</DropdownItem>
+            <template lang="html">
+              <DropdownItem>
+                <Icon :type="child.icon"></Icon>
+                <span style="padding-left:10px;">{{ itemTitle(child) }}</span>
+              </DropdownItem>
+            </template>
           </DropdownMenu>
-      </Dropdown>
-    </div>
-    <div class="">
-      <Dropdown class="drop-list"  placement="right-start">
-          <Button type="text" class="drop-icon">
-            <Icon type="heart-broken" size="20" color="#ffffff"></Icon>
-          </Button>
-          <DropdownMenu slot="list" style="width: 200px;">
-              <DropdownItem>驴打滚</DropdownItem>
-              <DropdownItem>炸酱面</DropdownItem>
-              <DropdownItem disabled>豆汁儿</DropdownItem>
-              <DropdownItem>冰糖葫芦</DropdownItem>
-              <DropdownItem divided>北京烤鸭</DropdownItem>
-          </DropdownMenu>
-      </Dropdown>
-    </div>
-    <div class="">
-      <Dropdown class="drop-list"  placement="right-start">
-          <Button type="text" class="drop-icon">
-            <Icon type="bonfire" size="20" color="#ffffff"></Icon>
-          </Button>
-          <DropdownMenu slot="list" style="width: 200px;">
-              <DropdownItem>驴打滚</DropdownItem>
-              <DropdownItem>炸酱面</DropdownItem>
-              <DropdownItem disabled>豆汁儿</DropdownItem>
-              <DropdownItem>冰糖葫芦</DropdownItem>
-              <DropdownItem divided>北京烤鸭</DropdownItem>
-          </DropdownMenu>
-      </Dropdown>
-    </div>
-    <div class="">
-      <Dropdown class="drop-list"  placement="right-start">
-          <Button type="text" class="drop-icon">
-            <Icon type="nuclear" size="20" color="#ffffff"></Icon>
-          </Button>
-          <DropdownMenu slot="list" style="width: 200px;">
-              <DropdownItem>驴打滚</DropdownItem>
-              <DropdownItem>炸酱面</DropdownItem>
-              <DropdownItem disabled>豆汁儿</DropdownItem>
-              <DropdownItem>冰糖葫芦</DropdownItem>
-              <DropdownItem divided>北京烤鸭</DropdownItem>
-          </DropdownMenu>
-      </Dropdown>
-    </div>
-
+        </Dropdown>
+      </div>
+    <template>
   </div>
-
 </template>
 
 <script>
   export default {
+    name: 'sidebarMenuShrink',
+    props: {
+      shrink: {
+        type: Boolean,
+        default: false
+      },
+      menuList: {
+        type: Array,
+        required: true
+      }
+    }
   }
 </script>

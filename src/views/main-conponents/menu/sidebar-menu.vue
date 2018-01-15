@@ -32,7 +32,10 @@
               <Icon type="stats-bars"></Icon>
               统计分析
           </template>
-            <MenuItem name="3-1">新增和启动</MenuItem>
+            <MenuItem name="3-1">
+              <Icon type="stats-bars"></Icon>
+              <span>新增和启动</span>
+            </MenuItem>
             <MenuItem name="3-2">活跃分析</MenuItem>
             <MenuItem name="3-3">时段分析</MenuItem>
             <MenuItem name="3-4">用户留存</MenuItem>
@@ -44,9 +47,14 @@
 <script>
   export default {
     name: 'sidebarMenu',
-    data () {
-      return {
-        shrink: false
+    props: {
+      shrink: {
+        type: Boolean,
+        default: false
+      },
+      menuList: {
+        type: Array,
+        required: true
       }
     }
   }

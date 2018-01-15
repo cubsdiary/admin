@@ -9,9 +9,12 @@
         <slot name="top"></slot>
         <sidebar-menu
             v-show="!shrink"
+            :menuList="menuList"
         ></sidebar-menu>
         <sidebarMenuShrink
             v-show="shrink"
+            :menuList="menuList"
+
         ></sidebarMenuShrink>
     </div>
 </template>
@@ -26,11 +29,11 @@ export default {
         shrink: {
             type: Boolean,
             default: false
+        },
+        menuList: {
+            type: Array,
+            required: true
         }
-        // menuList: {
-        //     type: Array,
-        //     required: true
-        // },
         // theme: {
         //     type: String,
         //     default: 'dark',
